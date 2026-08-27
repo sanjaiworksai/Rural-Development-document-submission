@@ -54,17 +54,6 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-[#0B192C] tracking-tight leading-tight">
           AI-Workshop Submission<br className="hidden sm:inline" /> portal
         </h1>
-        
-        <p className="text-slate-600 text-sm sm:text-base font-medium tracking-normal max-w-md mx-auto">
-          Document Submission &amp; Official Completion Certificate Portal
-        </p>
-
-        <div className="pt-1">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-300 bg-white/90 text-emerald-800 text-xs sm:text-sm font-semibold shadow-sm backdrop-blur-md">
-            <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>User Authentication &amp; Workspace Access</span>
-          </div>
-        </div>
       </div>
 
       {/* Main Login Card matching reference image */}
