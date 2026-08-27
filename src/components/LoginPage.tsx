@@ -51,8 +51,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           <Bot className="w-8 h-8" />
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-black text-[#0B192C] tracking-tight leading-tight">
-          AI-Workshop Submission<br className="hidden sm:inline" /> portal
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-serif font-black text-[#0B192C] tracking-tight leading-tight">
+          <span className="whitespace-nowrap">AI-Workshop Submission</span> Portal
         </h1>
       </div>
 
