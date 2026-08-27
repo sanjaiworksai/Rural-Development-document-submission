@@ -356,18 +356,20 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      {/* Subtle Footer (hidden during print) */}
-      <footer className="no-print border-t border-slate-200/80 bg-white/70 backdrop-blur-md py-4 text-center text-xs text-slate-500 relative z-10">
-        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span className="font-semibold text-slate-800 flex items-center gap-1.5 justify-center">
-            <span className="w-2 h-2 rounded-full bg-teal-500 inline-block" />
-            AI Workshop Submission &amp; Certification Portal
-          </span>
-          <span className="text-[11px] text-slate-500">
-            Accepts Word (.docx), PDF (.pdf), and PowerPoint (.pptx)
-          </span>
-        </div>
-      </footer>
+      {/* Subtle Footer (hidden during print and on login page) */}
+      {currentStep !== 'login' && (
+        <footer className="no-print border-t border-slate-200/80 bg-white/70 backdrop-blur-md py-4 text-center text-xs text-slate-500 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <span className="font-semibold text-slate-800 flex items-center gap-1.5 justify-center">
+              <span className="w-2 h-2 rounded-full bg-teal-500 inline-block" />
+              AI Workshop Submission &amp; Certification Portal
+            </span>
+            <span className="text-[11px] text-slate-500">
+              Accepts Word (.docx), PDF (.pdf), and PowerPoint (.pptx)
+            </span>
+          </div>
+        </footer>
+      )}
     </div>
   );
 }
