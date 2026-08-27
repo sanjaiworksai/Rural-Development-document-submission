@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Bot,
   CheckCircle2,
+  ExternalLink,
   Layers,
   Sparkles,
   Trash2,
@@ -86,30 +87,45 @@ export const ModulesSubmissionPage: React.FC<ModulesSubmissionPageProps> = ({
           </div>
 
           {/* Quick Actions & Utilities */}
-          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
-            <button
-              id="btn-autofill-all-modules"
-              type="button"
-              onClick={onAutoFillAll}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-teal-950 bg-teal-50 hover:bg-teal-100/80 border border-teal-200/80 transition-colors shadow-2xs cursor-pointer"
-              title="Quickly fill all 10 modules with verified AI workshop sample documents"
-            >
-              <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-              <span>Auto-Upload All 10 AI Demo Files</span>
-            </button>
-
-            {completedCount > 0 && (
+          <div className="flex flex-col sm:items-end gap-2 shrink-0">
+            <div className="flex flex-wrap items-center gap-2.5">
               <button
-                id="btn-clear-all-modules"
+                id="btn-autofill-all-modules"
                 type="button"
-                onClick={onClearAll}
-                className="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 border border-slate-200 hover:border-red-200 transition-colors cursor-pointer"
-                title="Reset all uploads"
+                onClick={onAutoFillAll}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-teal-950 bg-teal-50 hover:bg-teal-100/80 border border-teal-200/80 transition-colors shadow-2xs cursor-pointer"
+                title="Quickly fill all 10 modules with verified AI workshop sample documents"
               >
-                <Trash2 className="w-3.5 h-3.5" />
-                <span>Reset All</span>
+                <Sparkles className="w-3.5 h-3.5 text-teal-600" />
+                <span>Auto-Upload All 10 AI Demo Files</span>
               </button>
-            )}
+
+              {completedCount > 0 && (
+                <button
+                  id="btn-clear-all-modules"
+                  type="button"
+                  onClick={onClearAll}
+                  className="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 border border-slate-200 hover:border-red-200 transition-colors cursor-pointer"
+                  title="Reset all uploads"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span>Reset All</span>
+                </button>
+              )}
+            </div>
+
+            {/* Prompt Link Button below Auto-Upload */}
+            <a
+              id="btn-prompt-drive-link"
+              href="https://drive.google.com/drive/folders/12pidfynGWKGIBY9CV8mKFwdma32MCH9p"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-indigo-950 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200/80 transition-all shadow-2xs cursor-pointer hover:shadow-xs"
+              title="Open Google Drive Prompt Folder"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-indigo-600" />
+              <span>Prompt</span>
+            </a>
           </div>
         </div>
 
