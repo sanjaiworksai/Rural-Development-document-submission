@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: radial-gradient(rgba(15, 118, 110, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .bg-radial-glow {
+    background: radial-gradient(circle at 50% 0%, rgba(20, 184, 166, 0.12) 0%, rgba(15, 23, 42, 0.02) 60%, transparent 100%);
+  }
+}
+
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 297mm !important;
+    height: 210mm !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 297mm !important;
+    height: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    page-break-inside: avoid;
+    overflow: hidden !important;
+  }
+  .certificate-card {
+    page-break-inside: avoid;
+    box-shadow: none !important;
+    margin: 0 !important;
+    width: 297mm !important;
+    height: 210mm !important;
+    max-width: 297mm !important;
+    max-height: 210mm !important;
+    border-radius: 0 !important;
+  }
+}
+
+.font-serif-cert {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-signature {
+  font-family: 'Great Vibes', cursive;
+}
+

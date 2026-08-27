@@ -1,0 +1,6 @@
+{
+  "name": "AI Workshop Submission Portal",
+  "description": "AI Workshop document submission and certification portal with 10 modules in a 3-column grid, final submission module, profile verification, manual custom logo upload, and high-resolution downloadable completion certificate.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
