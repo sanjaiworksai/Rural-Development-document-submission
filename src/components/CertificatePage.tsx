@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { toPng } from 'html-to-image';
+import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import {
   ArrowLeft,
@@ -67,19 +68,95 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Direct PDF Download Handler
+  // High-fidelity full-bleed image data capture helper
+  const getCertificateImageData = async (): Promise<string> => {
+    if (!certRef.current) throw new Error('Certificate element not found');
+    const element = certRef.current;
+
+    // Ensure all internal images (logo, seal) are loaded
+    const imgElements = element.getElementsByTagName('img');
+    await Promise.all(
+      Array.from(imgElements).map((imgNode) => {
+        const img = imgNode as HTMLImageElement;
+        if (img.complete) return Promise.resolve();
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve;
+        });
+      })
+    );
+
+    const CERT_WIDTH = 842;
+    const CERT_HEIGHT = 595;
+
+    // 1. Primary engine: html-to-image with explicit pixel geometry
+    try {
+      const dataUrl = await toPng(element, {
+        width: CERT_WIDTH,
+        height: CERT_HEIGHT,
+        canvasWidth: CERT_WIDTH * 2,
+        canvasHeight: CERT_HEIGHT * 2,
+        pixelRatio: 2,
+        backgroundColor: '#FFFDF9',
+        cacheBust: true,
+        skipFonts: true,
+        style: {
+          transform: 'none',
+          transformOrigin: 'top left',
+          margin: '0',
+          width: `${CERT_WIDTH}px`,
+          height: `${CERT_HEIGHT}px`,
+          minWidth: `${CERT_WIDTH}px`,
+          maxWidth: `${CERT_WIDTH}px`,
+          minHeight: `${CERT_HEIGHT}px`,
+          maxHeight: `${CERT_HEIGHT}px`,
+          boxSizing: 'border-box',
+          position: 'static',
+        },
+      });
+
+      if (dataUrl && dataUrl.length > 5000) {
+        return dataUrl;
+      }
+    } catch (err) {
+      console.warn('html-to-image primary capture failed, falling back to html2canvas:', err);
+    }
+
+    // 2. High-precision fallback engine: html2canvas
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      width: CERT_WIDTH,
+      height: CERT_HEIGHT,
+      windowWidth: CERT_WIDTH + 50,
+      windowHeight: CERT_HEIGHT + 50,
+      backgroundColor: '#FFFDF9',
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      scrollX: 0,
+      scrollY: 0,
+      onclone: (clonedDoc) => {
+        const clonedElem = clonedDoc.getElementById('official-completion-certificate');
+        if (clonedElem) {
+          clonedElem.style.transform = 'none';
+          clonedElem.style.margin = '0';
+          clonedElem.style.width = `${CERT_WIDTH}px`;
+          clonedElem.style.height = `${CERT_HEIGHT}px`;
+          clonedElem.style.minWidth = `${CERT_WIDTH}px`;
+          clonedElem.style.maxWidth = `${CERT_WIDTH}px`;
+        }
+      },
+    });
+
+    return canvas.toDataURL('image/png', 1.0);
+  };
+
+  // Direct PDF Download Handler (Exact full A4 Landscape without cropping)
   const handleDownloadPdf = async () => {
     if (!certRef.current) return;
     setIsDownloadingPdf(true);
     try {
-      const element = certRef.current;
-      const imgData = await toPng(element, {
-        quality: 1.0,
-        pixelRatio: 3,
-        backgroundColor: '#FFFDF9',
-        cacheBust: true,
-        skipFonts: true,
-      });
+      const imgData = await getCertificateImageData();
 
       const pdf = new jsPDF({
         orientation: 'landscape',
@@ -88,33 +165,15 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
         compress: true,
       });
 
-      const pdfWidth = pdf.internal.pageSize.getWidth(); // 297 mm
-      const pdfHeight = pdf.internal.pageSize.getHeight(); // 210 mm
+      const pdfWidth = 297; // mm
+      const pdfHeight = 210; // mm
 
-      const imgProps = pdf.getImageProperties(imgData);
-      const imgRatio = imgProps.width / imgProps.height;
-      const pageRatio = pdfWidth / pdfHeight;
-
-      let renderWidth = pdfWidth;
-      let renderHeight = pdfHeight;
-      let x = 0;
-      let y = 0;
-
-      if (Math.abs(imgRatio - pageRatio) > 0.01) {
-        if (imgRatio > pageRatio) {
-          renderHeight = pdfWidth / imgRatio;
-          y = (pdfHeight - renderHeight) / 2;
-        } else {
-          renderWidth = pdfHeight * imgRatio;
-          x = (pdfWidth - renderWidth) / 2;
-        }
-      }
-
-      pdf.addImage(imgData, 'PNG', x, y, renderWidth, renderHeight, undefined, 'SLOW');
+      // Full-bleed placement matching standard A4 dimensions perfectly
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
       const filename = `AI_Workshop_Certificate_${certificate.recipientName.replace(/\s+/g, '_')}.pdf`;
       pdf.save(filename);
 
-      setDownloadSuccess('PDF Certificate Downloaded (A4 Landscape)!');
+      setDownloadSuccess('Complete A4 Certificate Downloaded (PDF)!');
       setTimeout(() => setDownloadSuccess(null), 3000);
     } catch (err) {
       console.error('Error generating PDF:', err);
@@ -129,21 +188,14 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
     if (!certRef.current) return;
     setIsDownloadingPng(true);
     try {
-      const element = certRef.current;
-      const image = await toPng(element, {
-        quality: 1.0,
-        pixelRatio: 3,
-        backgroundColor: '#FFFDF9',
-        cacheBust: true,
-        skipFonts: true,
-      });
+      const image = await getCertificateImageData();
 
       const link = document.createElement('a');
       link.href = image;
       link.download = `AI_Workshop_Certificate_${certificate.recipientName.replace(/\s+/g, '_')}.png`;
       link.click();
 
-      setDownloadSuccess('Certificate PNG Image Downloaded!');
+      setDownloadSuccess('Full Resolution Certificate (PNG) Downloaded!');
       setTimeout(() => setDownloadSuccess(null), 3000);
     } catch (err) {
       console.error('Error generating PNG:', err);
