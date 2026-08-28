@@ -253,7 +253,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
                 <Sparkles className="w-3 h-3" />
                 <span>Live Certificate Preview</span>
               </span>
-              <span className="text-[11px] text-emerald-400 font-semibold">{completedCount}/10 Modules Verified</span>
+              <span className="text-[11px] text-emerald-400 font-semibold">{completedCount}/{totalCount} Modules Verified</span>
             </div>
 
             <div className="p-4 bg-slate-800/80 rounded-xl border border-slate-700/80 space-y-3">
@@ -278,7 +278,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
               <div className="pt-2 border-t border-slate-700/80 flex items-center justify-between text-[10px] text-slate-400">
                 <span className="flex items-center gap-1 text-emerald-400">
                   <CheckCircle2 className="w-3 h-3" />
-                  <span>10 Modules Complete</span>
+                  <span>{totalCount} Modules Complete</span>
                 </span>
                 <span>Date: {new Date().toLocaleDateString()}</span>
               </div>

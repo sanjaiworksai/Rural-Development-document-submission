@@ -94,10 +94,10 @@ export const ModulesSubmissionPage: React.FC<ModulesSubmissionPageProps> = ({
                 type="button"
                 onClick={onAutoFillAll}
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-teal-950 bg-teal-50 hover:bg-teal-100/80 border border-teal-200/80 transition-colors shadow-2xs cursor-pointer"
-                title="Quickly fill all 10 modules with verified AI workshop sample documents"
+                title={`Quickly fill all ${totalCount} modules with verified AI workshop sample documents`}
               >
                 <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-                <span>Auto-Upload All 10 AI Demo Files</span>
+                <span>Auto-Upload All {totalCount} AI Demo Files</span>
               </button>
 
               {completedCount > 0 && (
@@ -164,7 +164,7 @@ export const ModulesSubmissionPage: React.FC<ModulesSubmissionPageProps> = ({
                 : 'text-slate-600 hover:text-slate-900'
             }`}
           >
-            All 10 Modules ({totalCount})
+            All Modules ({totalCount})
           </button>
           <button
             id="tab-filter-pending"
@@ -226,13 +226,13 @@ export const ModulesSubmissionPage: React.FC<ModulesSubmissionPageProps> = ({
           <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm ${
             isAllCompleted ? 'bg-emerald-500 text-slate-950 shadow-sm shadow-emerald-400/40' : 'bg-teal-500 text-slate-950 shadow-sm shadow-teal-400/40'
           }`}>
-            {isAllCompleted ? <CheckCircle2 className="w-6 h-6" /> : `${completedCount}/10`}
+            {isAllCompleted ? <CheckCircle2 className="w-6 h-6" /> : `${completedCount}/${totalCount}`}
           </div>
           <div>
             <p className="text-xs font-semibold text-slate-200">
               {isAllCompleted
-                ? 'All 10 AI Modules Ready for Final Submission'
-                : `${completedCount} of 10 AI Modules Uploaded`}
+                ? `All ${totalCount} AI Modules Ready for Final Submission`
+                : `${completedCount} of ${totalCount} AI Modules Uploaded`}
             </p>
             <p className="text-[11px] text-slate-400">
               {isAllCompleted
@@ -268,7 +268,7 @@ export const ModulesSubmissionPage: React.FC<ModulesSubmissionPageProps> = ({
                 Pending Module Submissions ({totalCount - completedCount} Left)
               </h3>
               <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                You have currently submitted {completedCount} out of 10 modules. You can auto-upload the remaining demo files, continue with current uploads, or go back to upload manually.
+                You have currently submitted {completedCount} out of {totalCount} modules. You can auto-upload the remaining demo files, continue with current uploads, or go back to upload manually.
               </p>
             </div>
 

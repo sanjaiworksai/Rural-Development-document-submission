@@ -347,11 +347,11 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
           {/* BODY CITATION PARAGRAPH */}
           <div className="relative z-10 max-w-xl mx-auto px-2 text-center">
             <p className="text-[10.5px] text-slate-700 leading-relaxed font-sans">
-              has successfully compiled, submitted, and completed all 10 core statutory and technical modules. All submissions and practical exercises have been verified with complete technical compliance:
+              has successfully compiled, submitted, and completed all {modules.length} core statutory and technical modules. All submissions and practical exercises have been verified with complete technical compliance:
             </p>
           </div>
 
-          {/* 10 MODULES 3-COLUMN MATRIX MATCHING OFFICIAL SPEC */}
+          {/* MODULES 3-COLUMN MATRIX MATCHING OFFICIAL SPEC */}
           <div className="relative z-10 max-w-xl mx-auto w-full">
             <div className="grid grid-cols-3 gap-1.5 text-left">
               {modules.map((mod) => (
@@ -430,7 +430,7 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
           {/* BOTTOM MICRO-DISCLAIMER */}
           <div className="relative z-10 pt-0.5">
             <p className="text-[8px] text-slate-400 font-sans tracking-normal text-center">
-              This is a digitally generated and cryptographically verifiable certificate issued upon successful completion of all 10 modules.
+              This is a digitally generated and cryptographically verifiable certificate issued upon successful completion of all {modules.length} modules.
             </p>
           </div>
         </div>

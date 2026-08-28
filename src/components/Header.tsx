@@ -11,9 +11,9 @@ interface HeaderProps {
   onNavigateStep?: (step: StepKey) => void;
 }
 
-const STEPS_CONFIG: { key: StepKey; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
+const getStepsConfig = (totalCount: number): { key: StepKey; label: string; icon: React.ComponentType<{ className?: string }> }[] => [
   { key: 'login', label: '1. Participant Login', icon: User },
-  { key: 'modules_submission', label: '2. 10 AI Modules', icon: Layers },
+  { key: 'modules_submission', label: `2. ${totalCount} AI Modules`, icon: Layers },
   { key: 'final_module', label: '3. Final Submission Module', icon: FileCheck },
   { key: 'user_details', label: '4. Profile Details', icon: User },
   { key: 'certificate', label: '5. Certificate', icon: Award },
@@ -26,7 +26,8 @@ export const Header: React.FC<HeaderProps> = ({
   totalCount,
   onLogout,
 }) => {
-  const currentStepIndex = STEPS_CONFIG.findIndex((s) => s.key === currentStep);
+  const stepsConfig = getStepsConfig(totalCount);
+  const currentStepIndex = stepsConfig.findIndex((s) => s.key === currentStep);
 
   return (
     <header className="no-print sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
@@ -83,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
         {userAuth && (
           <div className="py-2.5 border-t border-slate-100 overflow-x-auto no-scrollbar">
             <div className="flex items-center justify-between min-w-[640px] gap-2">
-              {STEPS_CONFIG.map((step, idx) => {
+              {stepsConfig.map((step, idx) => {
                 const isCompleted = idx < currentStepIndex;
                 const isCurrent = idx === currentStepIndex;
                 const Icon = step.icon;
@@ -111,7 +112,7 @@ export const Header: React.FC<HeaderProps> = ({
                       {isCompleted ? <CheckCircle2 className="w-3.5 h-3.5" /> : <Icon className="w-3 h-3" />}
                     </div>
                     <span className="text-xs whitespace-nowrap">{step.label}</span>
-                    {idx < STEPS_CONFIG.length - 1 && (
+                    {idx < stepsConfig.length - 1 && (
                       <div className="w-4 h-0.5 bg-slate-200 ml-1 hidden sm:block" />
                     )}
                   </div>

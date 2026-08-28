@@ -56,16 +56,15 @@ export function createSampleFinalProjectFile(type: DocType = 'pdf'): UploadedDoc
 
 export function createSampleFile(moduleId: number, preferredType: DocType): UploadedDoc {
   const sampleNames: Record<number, { name: string; type: DocType; size: number }> = {
-    1: { name: 'Prompt_Engineering_Templates_&_Schemas.docx', type: 'word', size: 1450000 },
-    2: { name: 'Vision_YOLOv11_Benchmark_Analysis.pdf', type: 'pdf', size: 3200000 },
-    3: { name: 'LLM_Attention_Architecture_Deck.pptx', type: 'powerpoint', size: 8450000 },
-    4: { name: 'Vector_RAG_Hybrid_Search_Report.docx', type: 'word', size: 980000 },
-    5: { name: 'LoRA_FineTuning_Loss_Metrics.pdf', type: 'pdf', size: 2100000 },
-    6: { name: 'ReAct_AI_Agent_Orchestration_Spec.docx', type: 'word', size: 1150000 },
-    7: { name: 'Responsible_AI_Safety_RedTeam_Audit.pdf', type: 'pdf', size: 4500000 },
-    8: { name: 'MLOps_vLLM_Deployment_Runbook.docx', type: 'word', size: 1320000 },
-    9: { name: 'Multimodal_Vision_Language_Demo.pptx', type: 'powerpoint', size: 12400000 },
-    10: { name: 'Capstone_AI_End_to_End_Dossier.docx', type: 'word', size: 2890000 },
+    1: { name: 'Inspection_Report_Preparation_Dossier.docx', type: 'word', size: 1450000 },
+    2: { name: 'Audit_Para_Reply_Compliance_Statement.docx', type: 'word', size: 1820000 },
+    3: { name: 'GDP_Petition_C_Rated_Reply_Draft.docx', type: 'word', size: 1650000 },
+    4: { name: 'Scheme_Guidelines_Executive_Summary.pdf', type: 'pdf', size: 2450000 },
+    5: { name: 'Circular_Summary_&_Tamil_Translation.docx', type: 'word', size: 1980000 },
+    6: { name: 'Bill_Preparation_Abstract_Estimate.docx', type: 'word', size: 2150000 },
+    7: { name: 'Field_Inspection_Checklist_Matrix.docx', type: 'word', size: 1350000 },
+    8: { name: 'Water_Supply_Data_Analysis_Report.pdf', type: 'pdf', size: 3120000 },
+    9: { name: 'Departmental_Review_PPT_Template.pptx', type: 'powerpoint', size: 7850000 },
   };
 
   const item = sampleNames[moduleId] || {

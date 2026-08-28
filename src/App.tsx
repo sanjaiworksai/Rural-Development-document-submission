@@ -57,7 +57,18 @@ export default function App() {
   const [modules, setModules] = useState<ModuleData[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY_MODULES);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          return INITIAL_MODULES.map((initMod) => {
+            const existing = parsed.find((p) => p.id === initMod.id);
+            return {
+              ...initMod,
+              uploadedFile: existing?.uploadedFile || undefined,
+            };
+          });
+        }
+      }
     } catch {}
     return INITIAL_MODULES;
   });
