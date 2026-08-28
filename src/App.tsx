@@ -226,7 +226,7 @@ export default function App() {
         day: 'numeric',
       }),
       totalModules: modules.length,
-      completedModules: completedCount || 10,
+      completedModules: completedCount || modules.length,
       verificationHash: `VERIF-${nameCode}-${randomHash}`,
       signatureAuthority: 'Thiru . Vishu Mahajan I.A.S',
       authorityTitle: 'Authorized Signatory',

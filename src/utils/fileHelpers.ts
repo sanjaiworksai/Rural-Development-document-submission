@@ -65,7 +65,6 @@ export function createSampleFile(moduleId: number, preferredType: DocType): Uplo
     7: { name: 'Court_Order_Summary_Translation.docx', type: 'word', size: 1750000 },
     8: { name: 'Acts_Rules_Query_Legal_Response.docx', type: 'word', size: 1620000 },
     9: { name: 'Minutes_Action_Points_Extraction_Matrix.docx', type: 'word', size: 1980000 },
-    10: { name: 'Scheme_Progress_Report_Dossier.docx', type: 'word', size: 2450000 },
   };
 
   const item = sampleNames[moduleId] || {

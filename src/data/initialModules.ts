@@ -197,14 +197,4 @@ export const INITIAL_MODULES: ModuleData[] = [
       },
     ],
   },
-  {
-    id: 10,
-    code: 'MOD-10',
-    title: 'Scheme Progress Report',
-    subtitle: 'Implementation & Financial Progress Dossier',
-    description: 'Compile physical milestones, expenditure abstracts, component tracking, and progress metrics for ongoing schemes.',
-    category: 'Progress',
-    acceptedTypes: ['word', 'pdf'],
-    recommendedType: 'word',
-  },
 ];
