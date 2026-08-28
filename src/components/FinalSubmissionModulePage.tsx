@@ -127,37 +127,75 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
         <button
           id="btn-final-module-back"
           onClick={onNavigateBack}
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-50 px-3.5 py-2 rounded-xl border border-slate-200 shadow-2xs transition-colors cursor-pointer"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white/90 hover:bg-white px-3.5 py-2 rounded-xl border border-slate-200/90 shadow-2xs transition-colors cursor-pointer"
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Back to 10 Modules</span>
+          <ArrowLeft className="w-4 h-4 text-slate-500" />
+          <span>Back to Modules</span>
         </button>
 
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-teal-50 text-teal-900 border border-teal-200/80 flex items-center gap-1.5">
+          <span className="text-xs font-semibold px-3 py-1 rounded-full bg-teal-50/90 text-teal-800 border border-teal-200/80 flex items-center gap-1.5 shadow-2xs">
             <Bot className="w-3.5 h-3.5 text-teal-600" />
-            <span>Module Submission</span>
+            <span>Final Module Submission</span>
           </span>
         </div>
       </div>
 
-      {/* Main Container Card: Dedicated Final Submission Module */}
-      <div className="bg-white/95 backdrop-blur-md rounded-3xl border border-slate-200/90 shadow-xl shadow-teal-950/5 overflow-hidden">
-        {/* Header Ribbon */}
-        <div className="bg-gradient-to-r from-blue-900 via-indigo-800 to-cyan-900 p-6 sm:p-8 text-white relative overflow-hidden">
-          <div className="absolute -right-10 -bottom-10 w-48 h-48 rounded-full bg-cyan-400/10 blur-2xl pointer-events-none" />
-          <div className="absolute left-1/3 -top-10 w-48 h-48 rounded-full bg-indigo-400/15 blur-2xl pointer-events-none" />
-          <div className="max-w-2xl space-y-2 relative z-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold border border-white/20">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-200" />
-              <span>Final Module</span>
+      {/* Main Container Card: Dedicated Final Submission Module with Module Card Signature Design */}
+      <div className="relative rounded-3xl border border-teal-200/90 hover:border-teal-300 bg-gradient-to-b from-white via-teal-50/30 to-cyan-50/20 backdrop-blur-xl shadow-xl shadow-teal-900/10 overflow-hidden transition-all">
+        {/* Top Gradient Accent Bar matching module card */}
+        <div className="h-2 w-full bg-gradient-to-r from-teal-400 via-emerald-400 to-cyan-500" />
+
+        {/* Top Header Section styled exactly like Module Cards */}
+        <div className="p-6 sm:p-8 pb-4 border-b border-slate-200/70">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold px-2.5 py-1 rounded-lg tracking-wider text-white bg-gradient-to-r from-teal-600 to-emerald-600 shadow-xs">
+                MOD-FINAL
+              </span>
+              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md border bg-teal-50/90 text-teal-800 border-teal-200/70">
+                Capstone Dossier
+              </span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
-              Final Submission Module
-            </h2>
-            <p className="text-xs sm:text-sm text-cyan-100/90 leading-relaxed">
-              Upload your completed capstone document (Word, PDF, or PowerPoint) below. Once submitted, you can proceed directly to enter your profile details for certificate issuance.
-            </p>
+
+            {finalDocument ? (
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-100/90 px-3 py-1 rounded-full border border-emerald-200 shadow-2xs">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Document Ready</span>
+              </span>
+            ) : (
+              <span className="text-xs font-medium px-3 py-1 rounded-full border bg-teal-50 text-teal-700 border-teal-200">
+                Final Upload Pending
+              </span>
+            )}
+          </div>
+
+          {/* Title and descriptions */}
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
+            Final Capstone Submission Module
+          </h2>
+          <p className="text-xs sm:text-sm font-semibold text-teal-700 mt-0.5">
+            Comprehensive Project Dossier &amp; Certificate Eligibility
+          </p>
+          <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed max-w-3xl">
+            Upload your completed capstone document (Word, PDF, or PowerPoint) below. Once submitted, you can proceed directly to enter your profile details for certificate issuance.
+          </p>
+
+          {/* Accepted Formats Tag List */}
+          <div className="mt-4 flex flex-wrap items-center gap-2 pt-3 border-t border-slate-200/60">
+            <span className="text-xs font-medium text-slate-400">Accepted Formats:</span>
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-blue-50 text-blue-700 border border-blue-200">
+              <FileText className="w-3.5 h-3.5" />
+              <span>Word (.docx, .doc)</span>
+            </span>
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-red-50 text-red-700 border border-red-200">
+              <FileCheck className="w-3.5 h-3.5" />
+              <span>PDF (.pdf)</span>
+            </span>
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 border border-amber-200">
+              <Presentation className="w-3.5 h-3.5" />
+              <span>PowerPoint (.pptx, .ppt)</span>
+            </span>
           </div>
         </div>
 
@@ -172,7 +210,7 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
               </div>
               <button
                 onClick={() => handleAutoFillSample('pdf')}
-                className="text-xs font-bold text-teal-900 underline hover:text-teal-700 shrink-0 cursor-pointer"
+                className="text-xs font-bold text-teal-800 underline hover:text-teal-950 shrink-0 cursor-pointer"
               >
                 Use Sample PDF
               </button>
@@ -200,13 +238,13 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
                 onClick={() => fileInputRef.current?.click()}
                 className={`border-2 border-dashed rounded-3xl p-8 sm:p-10 text-center transition-all cursor-pointer ${
                   isDragging
-                    ? 'border-teal-500 bg-teal-50/70 scale-[1.01]'
-                    : 'border-slate-300 hover:border-teal-500 hover:bg-teal-50/30'
+                    ? 'border-teal-500 bg-teal-50/80 scale-[1.01]'
+                    : 'border-slate-300 bg-slate-50/70 hover:border-teal-500 hover:bg-teal-50/40'
                 }`}
               >
                 <div className="max-w-md mx-auto space-y-4">
-                  <div className="w-16 h-16 rounded-2xl bg-teal-50 text-teal-700 mx-auto flex items-center justify-center shadow-xs border border-teal-200/60">
-                    <UploadCloud className="w-8 h-8" />
+                  <div className="w-16 h-16 rounded-2xl bg-white text-teal-700 mx-auto flex items-center justify-center shadow-xs border border-teal-200/80">
+                    <UploadCloud className="w-8 h-8 text-teal-600" />
                   </div>
 
                   <div>
@@ -220,16 +258,16 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
 
                   {/* Accepted Types Pills */}
                   <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-lg border border-blue-200">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-700 bg-blue-50/90 px-2.5 py-1 rounded-lg border border-blue-200/80">
                       <FileText className="w-3.5 h-3.5 text-blue-600" />
                       <span>Word (.docx, .doc)</span>
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-red-700 bg-red-50 px-2.5 py-1 rounded-lg border border-red-200">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-red-700 bg-red-50/90 px-2.5 py-1 rounded-lg border border-red-200/80">
                       <FileCheck className="w-3.5 h-3.5 text-red-600" />
                       <span>PDF (.pdf)</span>
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-orange-700 bg-orange-50 px-2.5 py-1 rounded-lg border border-orange-200">
-                      <Presentation className="w-3.5 h-3.5 text-orange-600" />
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-800 bg-amber-50/90 px-2.5 py-1 rounded-lg border border-amber-200/80">
+                      <Presentation className="w-3.5 h-3.5 text-amber-600" />
                       <span>PowerPoint (.pptx, .ppt)</span>
                     </span>
                   </div>
@@ -241,7 +279,7 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
                         e.stopPropagation();
                         fileInputRef.current?.click();
                       }}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 shadow-sm transition-all cursor-pointer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 shadow-md shadow-teal-700/20 transition-all cursor-pointer"
                     >
                       <Upload className="w-4 h-4" />
                       <span>Select Final Document</span>
@@ -251,7 +289,7 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
               </div>
 
               {/* Quick Sample Demo Options */}
-              <div className="bg-slate-50 rounded-2xl border border-slate-200 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="bg-slate-50/90 rounded-2xl border border-slate-200/90 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex items-center gap-2 text-xs text-slate-600">
                   <Sparkles className="w-4 h-4 text-teal-600 shrink-0" />
                   <span>Need a sample file for demonstration?</span>
@@ -261,7 +299,7 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
                   <button
                     type="button"
                     onClick={() => handleAutoFillSample('pdf')}
-                    className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 transition-colors shadow-2xs cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90 transition-colors shadow-2xs cursor-pointer"
                   >
                     <FileCheck className="w-3.5 h-3.5 text-red-600" />
                     <span>Auto-Sample PDF</span>
@@ -269,7 +307,7 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
                   <button
                     type="button"
                     onClick={() => handleAutoFillSample('word')}
-                    className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 transition-colors shadow-2xs cursor-pointer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200/90 transition-colors shadow-2xs cursor-pointer"
                   >
                     <FileText className="w-3.5 h-3.5 text-blue-600" />
                     <span>Auto-Sample Word</span>
@@ -280,7 +318,7 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
           ) : (
             /* Uploaded Document Details Card */
             <div className="space-y-4">
-              <div className="bg-gradient-to-br from-teal-50/50 to-slate-50 rounded-2xl border-2 border-teal-300/80 p-5 sm:p-6 space-y-4">
+              <div className="bg-gradient-to-br from-teal-50/70 via-slate-50/80 to-white rounded-2xl border-2 border-teal-300/80 p-5 sm:p-6 space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-teal-200/60">
                   <div className="flex items-center gap-3.5">
                     <div className="w-12 h-12 rounded-2xl bg-white border border-teal-200 flex items-center justify-center shadow-xs">
@@ -288,10 +326,10 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-teal-900 bg-teal-100/80 px-2 py-0.5 rounded">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-teal-800 bg-teal-100/90 px-2 py-0.5 rounded border border-teal-200">
                           Final Submission Document
                         </span>
-                        <span className="text-[11px] font-mono text-slate-400">
+                        <span className="text-[11px] font-mono text-slate-500">
                           {finalDocument.id}
                         </span>
                       </div>
@@ -309,32 +347,32 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
 
                 {/* Metadata & Properties */}
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                  <div className="bg-white p-3 rounded-xl border border-slate-200">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">
+                  <div className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold block">
                       Format
                     </span>
                     <span className="font-bold text-slate-800 uppercase mt-0.5 block">
                       {finalDocument.type}
                     </span>
                   </div>
-                  <div className="bg-white p-3 rounded-xl border border-slate-200">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">
+                  <div className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold block">
                       File Size
                     </span>
                     <span className="font-bold text-slate-800 mt-0.5 block">
                       {formatFileSize(finalDocument.size)}
                     </span>
                   </div>
-                  <div className="bg-white p-3 rounded-xl border border-slate-200">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">
+                  <div className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold block">
                       Uploaded At
                     </span>
                     <span className="font-semibold text-slate-800 mt-0.5 block truncate">
                       {finalDocument.uploadedAt}
                     </span>
                   </div>
-                  <div className="bg-white p-3 rounded-xl border border-slate-200">
-                    <span className="text-slate-400 text-[10px] uppercase font-bold block">
+                  <div className="bg-white p-3 rounded-xl border border-slate-200/80 shadow-2xs">
+                    <span className="text-slate-500 text-[10px] uppercase font-bold block">
                       Compliance Status
                     </span>
                     <span className="font-bold text-emerald-700 mt-0.5 flex items-center gap-1">
@@ -349,7 +387,7 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200/90 transition-colors cursor-pointer"
                   >
                     <RefreshCw className="w-3.5 h-3.5 text-slate-500" />
                     <span>Replace Document</span>
@@ -370,9 +408,9 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
 
           {/* Action to proceed to Profile Details */}
           <div className="pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="text-xs text-slate-500 space-y-0.5">
+            <div className="text-xs text-slate-600 space-y-0.5">
               <p className="font-semibold text-slate-800">
-                Participant: <span className="text-teal-900">{userAuth.name}</span> ({userAuth.email})
+                Participant: <span className="text-teal-800 font-bold">{userAuth.name}</span> ({userAuth.email})
               </p>
               <p>
                 {finalDocument
@@ -386,8 +424,8 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
               onClick={handleProceedClick}
               className={`inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-sm font-bold transition-all shadow-md cursor-pointer ${
                 finalDocument
-                  ? 'text-white bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 hover:from-teal-700 hover:via-emerald-700 hover:to-cyan-700 hover:shadow-lg shadow-teal-600/20'
-                  : 'text-slate-400 bg-slate-200 hover:bg-slate-300 hover:text-slate-600'
+                  ? 'text-white bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 hover:from-teal-500 hover:via-emerald-500 hover:to-cyan-500 hover:shadow-lg shadow-teal-700/20'
+                  : 'text-slate-400 bg-slate-200/80 border border-slate-300/80 cursor-not-allowed'
               }`}
             >
               <span>Confirm &amp; Enter Profile Details</span>

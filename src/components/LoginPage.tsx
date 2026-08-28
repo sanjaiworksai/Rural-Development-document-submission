@@ -56,106 +56,128 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         </h1>
       </div>
 
-      {/* Main Login Card matching reference image */}
-      <div className="w-full max-w-[460px] mx-auto">
-        <div className="bg-white/95 backdrop-blur-xl rounded-3xl border border-slate-200/80 shadow-2xl shadow-slate-900/10 p-6 sm:p-8 relative">
-          {/* Card Top Row Header */}
-          <div className="flex items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100">
-            <div className="flex items-center gap-2 text-slate-800 font-bold text-xs sm:text-sm tracking-wider uppercase">
-              <ShieldCheck className="w-5 h-5 text-sky-600 shrink-0" />
-              <span>SIGN IN WITH YOUR EMAIL</span>
-            </div>
+      {/* Main Login Card styled with the exact signature Module Card design */}
+      <div className="w-full max-w-[480px] mx-auto">
+        <div className="relative rounded-3xl border border-cyan-200/90 hover:border-cyan-300 bg-gradient-to-b from-white via-cyan-50/30 to-teal-50/20 backdrop-blur-xl shadow-xl shadow-cyan-900/10 overflow-hidden transition-all">
+          {/* Top Gradient Accent Bar matching module card */}
+          <div className="h-2 w-full bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400" />
 
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 border border-sky-100 text-sky-700 text-xs font-medium">
-              <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
-              <span>User Login</span>
-            </div>
-          </div>
+          <div className="p-6 sm:p-8">
+            {/* Card Top Row Header with Module-style Badges */}
+            <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-200/70">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold px-2.5 py-1 rounded-lg tracking-wider text-white bg-gradient-to-r from-cyan-600 to-teal-600 shadow-xs">
+                  AUTH-01
+                </span>
+                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md border bg-cyan-50/90 text-cyan-800 border-cyan-200/70">
+                  Portal Login
+                </span>
+              </div>
 
-          {error && (
-            <div className="mb-5 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-red-500 shrink-0" />
-              <span>{error}</span>
-            </div>
-          )}
-
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Field 1: YOUR EMAIL ADDRESS * */}
-            <div>
-              <label
-                htmlFor="input-user-email"
-                className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
-              >
-                YOUR EMAIL ADDRESS <span className="text-red-500">*</span>
-              </label>
-              <div className="relative rounded-2xl">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <input
-                  id="input-user-email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="e.g. yourname@example.com"
-                  className="block w-full pl-11 pr-4 py-3.5 text-sm bg-slate-50/60 border border-slate-200 rounded-2xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-sky-500/10 focus:border-sky-500 focus:bg-white transition-all"
-                />
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-teal-50/90 border border-teal-200/80 text-teal-800 text-xs font-medium shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></span>
+                <span>Sign In Required</span>
               </div>
             </div>
 
-            {/* Field 2: YOUR FULL NAME (FOR CERTIFICATE) */}
-            <div>
-              <label
-                htmlFor="input-user-name"
-                className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2"
-              >
-                YOUR FULL NAME (FOR CERTIFICATE) <span className="text-red-500">*</span>
-              </label>
-              <div className="relative rounded-2xl">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                  <User className="w-5 h-5" />
-                </div>
-                <input
-                  id="input-user-name"
-                  type="text"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g. John Doe"
-                  className="block w-full pl-11 pr-4 py-3.5 text-sm bg-slate-50/60 border border-slate-200 rounded-2xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-sky-500/10 focus:border-sky-500 focus:bg-white transition-all"
-                />
-              </div>
-              <p className="text-[12px] text-slate-500 mt-2 leading-relaxed">
-                Sign in with your email to submit documents and generate certificates under your name.
+            {/* Subtitle Header */}
+            <div className="mb-5">
+              <h3 className="text-lg sm:text-xl font-bold text-slate-900 leading-tight">
+                Sign In With Your Email
+              </h3>
+              <p className="text-xs font-semibold text-teal-700 mt-0.5">
+                Participant Verification &amp; Document Submission
+              </p>
+              <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                Enter your official details to access the AI workshop modules and generate accredited completion certificates.
               </p>
             </div>
 
-            {/* Submit Button */}
-            <div className="pt-2">
-              <button
-                id="btn-login-submit"
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl text-sm sm:text-base font-bold text-white bg-[#64748B] hover:bg-[#475569] active:scale-[0.99] shadow-md hover:shadow-lg transition-all cursor-pointer"
-              >
-                <span>Enter Workspace</span>
-                <ArrowRight className="w-4 h-4 text-cyan-300" />
-              </button>
-            </div>
+            {error && (
+              <div className="mb-5 p-3.5 rounded-2xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-red-500 shrink-0" />
+                <span>{error}</span>
+              </div>
+            )}
 
-            {/* Quick Demo Pre-fill */}
-            <div className="text-center pt-1">
-              <button
-                id="btn-login-demo-prefill"
-                type="button"
-                onClick={handleQuickDemo}
-                className="text-xs text-slate-400 hover:text-slate-600 font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer"
-              >
-                <Sparkles className="w-3 h-3 text-cyan-500" />
-                <span>Auto-fill sample participant</span>
-              </button>
-            </div>
-          </form>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Field 1: YOUR EMAIL ADDRESS * */}
+              <div>
+                <label
+                  htmlFor="input-user-email"
+                  className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5"
+                >
+                  YOUR EMAIL ADDRESS <span className="text-red-500">*</span>
+                </label>
+                <div className="relative rounded-xl">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <Mail className="w-4 h-4 text-teal-600" />
+                  </div>
+                  <input
+                    id="input-user-email"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="e.g. yourname@example.com"
+                    className="block w-full pl-10 pr-4 py-3 text-sm bg-white/90 border border-cyan-200/90 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-cyan-500/15 focus:border-cyan-500 focus:bg-white transition-all shadow-2xs"
+                  />
+                </div>
+              </div>
+
+              {/* Field 2: YOUR FULL NAME (FOR CERTIFICATE) */}
+              <div>
+                <label
+                  htmlFor="input-user-name"
+                  className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5"
+                >
+                  YOUR FULL NAME (FOR CERTIFICATE) <span className="text-red-500">*</span>
+                </label>
+                <div className="relative rounded-xl">
+                  <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <User className="w-4 h-4 text-teal-600" />
+                  </div>
+                  <input
+                    id="input-user-name"
+                    type="text"
+                    required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="e.g. John Doe"
+                    className="block w-full pl-10 pr-4 py-3 text-sm bg-white/90 border border-cyan-200/90 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-4 focus:ring-cyan-500/15 focus:border-cyan-500 focus:bg-white transition-all shadow-2xs"
+                  />
+                </div>
+                <p className="text-[11px] text-slate-500 mt-1.5 leading-relaxed">
+                  This exact name will be engraved on your verified completion certificate.
+                </p>
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-2">
+                <button
+                  id="btn-login-submit"
+                  type="submit"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-6 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-cyan-600 via-teal-600 to-emerald-600 hover:from-cyan-700 hover:via-teal-700 hover:to-emerald-700 active:scale-[0.99] shadow-md shadow-cyan-600/20 hover:shadow-lg hover:shadow-cyan-600/30 transition-all cursor-pointer"
+                >
+                  <span>Enter Workspace</span>
+                  <ArrowRight className="w-4 h-4 text-cyan-200" />
+                </button>
+              </div>
+
+              {/* Quick Demo Pre-fill */}
+              <div className="text-center pt-1">
+                <button
+                  id="btn-login-demo-prefill"
+                  type="button"
+                  onClick={handleQuickDemo}
+                  className="text-xs text-slate-500 hover:text-teal-700 font-medium inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-teal-600" />
+                  <span>Auto-fill sample participant</span>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

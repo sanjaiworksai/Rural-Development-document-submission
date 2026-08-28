@@ -151,136 +151,146 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
-      {/* Top Action Toolbar (Hidden on print) */}
-      <div className="no-print bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-        <div className="flex items-center gap-3.5">
-          <div className="w-11 h-11 rounded-xl bg-teal-50 text-teal-900 border border-teal-200/80 flex items-center justify-center shrink-0 shadow-2xs">
-            <Award className="w-6 h-6 text-teal-700" />
-          </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h2 className="text-base sm:text-lg font-bold text-slate-900">
-                Official AI Workshop Certificate
-              </h2>
-              <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
-                Verified Credential
-              </span>
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+      {/* Top Action Toolbar with Module Card Signature Design (Hidden on print) */}
+      <div className="no-print relative rounded-3xl border border-cyan-200/90 hover:border-cyan-300 bg-gradient-to-b from-white via-cyan-50/30 to-teal-50/20 backdrop-blur-xl shadow-xl shadow-cyan-900/10 overflow-hidden transition-all">
+        {/* Top Gradient Accent Bar matching module card */}
+        <div className="h-2 w-full bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400" />
+
+        <div className="p-4 sm:p-6">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+            <div className="flex items-center gap-3.5">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-600 text-white flex items-center justify-center shrink-0 shadow-md shadow-teal-700/20">
+                <Award className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold px-2 py-0.5 rounded-lg tracking-wider text-white bg-gradient-to-r from-cyan-600 to-teal-600 shadow-xs">
+                    CERT-01
+                  </span>
+                  <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
+                    Official AI Workshop Certificate
+                  </h2>
+                  <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    Verified Credential
+                  </span>
+                </div>
+                <p className="text-xs text-slate-500 mt-1">
+                  Certificate Ref:{' '}
+                  <span className="font-mono font-semibold text-slate-800">
+                    {certificate.certificateNumber}
+                  </span>
+                </p>
+              </div>
             </div>
-            <p className="text-xs text-slate-500">
-              Certificate Ref:{' '}
-              <span className="font-mono font-semibold text-slate-800">
-                {certificate.certificateNumber}
-              </span>
-            </p>
+
+            {/* Action Buttons & Style Selector */}
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Border Design Selector */}
+              <div className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/90 border border-cyan-200/90 text-xs shadow-2xs">
+                <Paintbrush className="w-3.5 h-3.5 text-teal-700" />
+                <span className="font-semibold text-slate-700">Border:</span>
+                <select
+                  id="select-border-style"
+                  value={borderStyle}
+                  onChange={(e) => setBorderStyle(e.target.value as BorderStyle)}
+                  className="bg-transparent font-medium text-slate-800 focus:outline-hidden cursor-pointer text-xs"
+                >
+                  <option value="ornate-gold">👑 Ornate Royal Gold</option>
+                  <option value="guilloche-security">🛡️ Guilloché Security</option>
+                  <option value="imperial-navy">🏛️ Imperial Navy &amp; Gold</option>
+                  <option value="modern-luxury">✨ Modern Luxury</option>
+                </select>
+              </div>
+
+              {downloadSuccess && (
+                <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 flex items-center gap-1 shadow-2xs">
+                  <Check className="w-3.5 h-3.5" />
+                  <span>{downloadSuccess}</span>
+                </span>
+              )}
+
+              {/* Copy ID */}
+              <button
+                id="btn-copy-cert-id"
+                type="button"
+                onClick={handleCopyCertId}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white/90 hover:bg-white border border-cyan-200/80 transition-colors shadow-2xs cursor-pointer"
+                title="Copy certificate verification ID"
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5 text-slate-500" />}
+                <span>{copied ? 'Copied ID' : 'Copy ID'}</span>
+              </button>
+
+              {/* Edit Profile Info */}
+              <button
+                id="btn-edit-details"
+                type="button"
+                onClick={onEditDetails}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white/90 hover:bg-white border border-cyan-200/80 transition-colors shadow-2xs cursor-pointer"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-slate-500" />
+                <span>Edit Details</span>
+              </button>
+
+              {/* DOWNLOAD CERTIFICATE PDF BUTTON */}
+              <button
+                id="btn-download-certificate-pdf"
+                type="button"
+                onClick={handleDownloadPdf}
+                disabled={isDownloadingPdf}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 hover:from-teal-700 hover:via-emerald-700 hover:to-cyan-700 shadow-md shadow-teal-600/20 hover:shadow-lg transition-all cursor-pointer disabled:opacity-75"
+              >
+                {isDownloadingPdf ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <Download className="w-3.5 h-3.5" />
+                )}
+                <span>{isDownloadingPdf ? 'Generating PDF...' : 'Download Certificate (PDF)'}</span>
+              </button>
+
+              {/* DOWNLOAD CERTIFICATE IMAGE BUTTON */}
+              <button
+                id="btn-download-certificate-png"
+                type="button"
+                onClick={handleDownloadPng}
+                disabled={isDownloadingPng}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white/90 hover:bg-white border border-cyan-200/80 transition-colors shadow-2xs cursor-pointer disabled:opacity-75"
+                title="Download high-resolution image"
+              >
+                {isDownloadingPng ? (
+                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                ) : (
+                  <ImageIcon className="w-3.5 h-3.5 text-teal-600" />
+                )}
+                <span>PNG</span>
+              </button>
+
+              {/* Print Certificate */}
+              <button
+                id="btn-print-certificate"
+                type="button"
+                onClick={handlePrint}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white/90 hover:bg-white border border-cyan-200/80 transition-colors shadow-2xs cursor-pointer"
+                title="Print or Save as PDF via Browser"
+              >
+                <Printer className="w-3.5 h-3.5 text-slate-500" />
+                <span>Print</span>
+              </button>
+
+              {/* Exit Session / Start New */}
+              <button
+                id="btn-start-over"
+                type="button"
+                onClick={onStartOver}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-white/60 transition-colors cursor-pointer"
+                title="Exit session and return to login"
+              >
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Exit Session</span>
+              </button>
+            </div>
           </div>
-        </div>
-
-        {/* Action Buttons & Style Selector */}
-        <div className="flex flex-wrap items-center gap-2">
-          {/* Border Design Selector */}
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs">
-            <Paintbrush className="w-3.5 h-3.5 text-teal-700" />
-            <span className="font-semibold text-slate-700">Border:</span>
-            <select
-              id="select-border-style"
-              value={borderStyle}
-              onChange={(e) => setBorderStyle(e.target.value as BorderStyle)}
-              className="bg-transparent font-medium text-slate-800 focus:outline-hidden cursor-pointer text-xs"
-            >
-              <option value="ornate-gold">👑 Ornate Royal Gold</option>
-              <option value="guilloche-security">🛡️ Guilloché Security</option>
-              <option value="imperial-navy">🏛️ Imperial Navy &amp; Gold</option>
-              <option value="modern-luxury">✨ Modern Luxury</option>
-            </select>
-          </div>
-
-          {downloadSuccess && (
-            <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 flex items-center gap-1">
-              <Check className="w-3.5 h-3.5" />
-              <span>{downloadSuccess}</span>
-            </span>
-          )}
-
-          {/* Copy ID */}
-          <button
-            id="btn-copy-cert-id"
-            type="button"
-            onClick={handleCopyCertId}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition-colors cursor-pointer"
-            title="Copy certificate verification ID"
-          >
-            {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>{copied ? 'Copied ID' : 'Copy ID'}</span>
-          </button>
-
-          {/* Edit Profile Info */}
-          <button
-            id="btn-edit-details"
-            type="button"
-            onClick={onEditDetails}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" />
-            <span>Edit Details</span>
-          </button>
-
-          {/* DOWNLOAD CERTIFICATE PDF BUTTON */}
-          <button
-            id="btn-download-certificate-pdf"
-            type="button"
-            onClick={handleDownloadPdf}
-            disabled={isDownloadingPdf}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-teal-600 via-emerald-600 to-cyan-600 hover:from-teal-700 hover:via-emerald-700 hover:to-cyan-700 shadow-md shadow-teal-600/20 hover:shadow-lg transition-all cursor-pointer disabled:opacity-75"
-          >
-            {isDownloadingPdf ? (
-              <Loader2 className="w-3.5 h-3.5 animate-spin" />
-            ) : (
-              <Download className="w-3.5 h-3.5" />
-            )}
-            <span>{isDownloadingPdf ? 'Generating PDF...' : 'Download Certificate (PDF)'}</span>
-          </button>
-
-          {/* DOWNLOAD CERTIFICATE IMAGE BUTTON */}
-          <button
-            id="btn-download-certificate-png"
-            type="button"
-            onClick={handleDownloadPng}
-            disabled={isDownloadingPng}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 transition-colors cursor-pointer disabled:opacity-75"
-            title="Download high-resolution image"
-          >
-            {isDownloadingPng ? (
-              <Loader2 className="w-3.5 h-3.5 animate-spin" />
-            ) : (
-              <ImageIcon className="w-3.5 h-3.5 text-slate-600" />
-            )}
-            <span>PNG</span>
-          </button>
-
-          {/* Print Certificate */}
-          <button
-            id="btn-print-certificate"
-            type="button"
-            onClick={handlePrint}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
-            title="Print or Save as PDF via Browser"
-          >
-            <Printer className="w-3.5 h-3.5" />
-            <span>Print</span>
-          </button>
-
-          {/* Exit Session / Start New */}
-          <button
-            id="btn-start-over"
-            type="button"
-            onClick={onStartOver}
-            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
-            title="Exit session and return to login"
-          >
-            <LogOut className="w-3.5 h-3.5" />
-            <span>Exit Session</span>
-          </button>
         </div>
       </div>
 
