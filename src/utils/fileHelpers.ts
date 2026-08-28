@@ -57,14 +57,15 @@ export function createSampleFinalProjectFile(type: DocType = 'pdf'): UploadedDoc
 export function createSampleFile(moduleId: number, preferredType: DocType): UploadedDoc {
   const sampleNames: Record<number, { name: string; type: DocType; size: number }> = {
     1: { name: 'Inspection_Report_Preparation_Dossier.docx', type: 'word', size: 1450000 },
-    2: { name: 'Audit_Para_Reply_Compliance_Statement.docx', type: 'word', size: 1820000 },
-    3: { name: 'GDP_Petition_C_Rated_Reply_Draft.docx', type: 'word', size: 1650000 },
-    4: { name: 'Scheme_Guidelines_Executive_Summary.pdf', type: 'pdf', size: 2450000 },
-    5: { name: 'Circular_Summary_&_Tamil_Translation.docx', type: 'word', size: 1980000 },
-    6: { name: 'Bill_Preparation_Abstract_Estimate.docx', type: 'word', size: 2150000 },
-    7: { name: 'Field_Inspection_Checklist_Matrix.docx', type: 'word', size: 1350000 },
-    8: { name: 'Water_Supply_Data_Analysis_Report.pdf', type: 'pdf', size: 3120000 },
-    9: { name: 'Departmental_Review_PPT_Template.pptx', type: 'powerpoint', size: 7850000 },
+    2: { name: 'Show_Cause_Notice_Compliance_Statement.docx', type: 'word', size: 1820000 },
+    3: { name: 'VPTAX_Letter_Drafting_Assessment.docx', type: 'word', size: 1650000 },
+    4: { name: 'Water_Supply_Data_Analysis_Report.pdf', type: 'pdf', size: 2450000 },
+    5: { name: 'Water_Supply_Meeting_Review_Deck.pptx', type: 'powerpoint', size: 5980000 },
+    6: { name: 'Scheme_Guidelines_Provisions_Summary.pdf', type: 'pdf', size: 2850000 },
+    7: { name: 'Court_Order_Summary_Translation.docx', type: 'word', size: 1750000 },
+    8: { name: 'Acts_Rules_Query_Legal_Response.docx', type: 'word', size: 1620000 },
+    9: { name: 'Minutes_Action_Points_Extraction_Matrix.docx', type: 'word', size: 1980000 },
+    10: { name: 'Scheme_Progress_Report_Dossier.docx', type: 'word', size: 2450000 },
   };
 
   const item = sampleNames[moduleId] || {

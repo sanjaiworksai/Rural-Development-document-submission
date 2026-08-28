@@ -11,11 +11,13 @@ export interface UploadedDoc {
   pageCount?: number;
 }
 
+export type ResourceDocType = 'pdf' | 'excel' | 'word' | 'powerpoint';
+
 export interface ModuleResourceDoc {
   id: string;
   title: string;
   filename: string;
-  type: 'pdf';
+  type: ResourceDocType;
   viewUrl: string;
   downloadUrl: string;
   sizeDescription?: string;

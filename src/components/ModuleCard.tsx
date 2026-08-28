@@ -207,54 +207,85 @@ export const ModuleCard: React.FC<ModuleCardProps> = ({
           {module.acceptedTypes.map((type) => getBadgeForType(type))}
         </div>
 
-        {/* Downloadable Reference PDF Documents (if provided for module) */}
+        {/* Downloadable Reference Documents (if provided for module) */}
         {module.resourceDocs && module.resourceDocs.length > 0 && (
           <div className="mt-3.5 pt-3 border-t border-slate-200/80 space-y-2">
             <div className="flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900">
-                <FileDown className="w-3.5 h-3.5 text-red-600" />
-                <span>Reference Documents (PDF)</span>
+                <FileDown className="w-3.5 h-3.5 text-teal-600" />
+                <span>Reference Documents</span>
               </span>
-              <span className="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md bg-red-50 text-red-700 border border-red-200">
-                {module.resourceDocs.length} PDFs Available
+              <span className="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md bg-teal-50 text-teal-800 border border-teal-200">
+                {module.resourceDocs.length} {module.resourceDocs.length === 1 ? 'Document' : 'Documents'} Available
               </span>
             </div>
 
             <div className="space-y-1.5">
-              {module.resourceDocs.map((doc, idx) => (
-                <div
-                  key={doc.id}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-xl bg-white/95 border border-slate-200/90 shadow-2xs hover:border-red-200 hover:bg-red-50/20 transition-all"
-                >
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div className="w-7 h-7 rounded-lg bg-red-100 text-red-700 flex items-center justify-center font-bold text-[11px] shrink-0 shadow-2xs">
-                      PDF
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-xs font-semibold text-slate-900 truncate" title={doc.title}>
-                        {doc.title}
-                      </p>
-                      <p className="text-[10px] text-slate-500 truncate">
-                        {doc.filename}
-                      </p>
-                    </div>
-                  </div>
+              {module.resourceDocs.map((doc, idx) => {
+                const isPdf = doc.type === 'pdf';
+                const isExcel = doc.type === 'excel';
+                const isWord = doc.type === 'word';
 
-                  <div className="flex items-center shrink-0 self-end sm:self-auto">
-                    <a
-                      id={`btn-download-pdf-${module.id}-${idx}`}
-                      href={doc.downloadUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 shadow-2xs transition-all cursor-pointer"
-                      title="Download PDF directly"
-                    >
-                      <Download className="w-3.5 h-3.5" />
-                      <span>Download PDF</span>
-                    </a>
+                const badgeLabel = isPdf ? 'PDF' : isExcel ? 'XLSX' : isWord ? 'DOCX' : 'PPTX';
+                const badgeBg = isPdf
+                  ? 'bg-red-100 text-red-700 border border-red-200'
+                  : isExcel
+                  ? 'bg-emerald-100 text-emerald-800 border border-emerald-200'
+                  : isWord
+                  ? 'bg-blue-100 text-blue-700 border border-blue-200'
+                  : 'bg-orange-100 text-orange-700 border border-orange-200';
+
+                const btnGradient = isPdf
+                  ? 'from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 shadow-red-600/20'
+                  : isExcel
+                  ? 'from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-emerald-600/20'
+                  : isWord
+                  ? 'from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-blue-600/20'
+                  : 'from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 shadow-orange-600/20';
+
+                const btnLabel = isPdf
+                  ? 'Download PDF'
+                  : isExcel
+                  ? 'Download Excel'
+                  : isWord
+                  ? 'Download Word'
+                  : 'Download PPT';
+
+                return (
+                  <div
+                    key={doc.id}
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-xl bg-white/95 border border-slate-200/90 shadow-2xs hover:border-teal-200 hover:bg-teal-50/20 transition-all"
+                  >
+                    <div className="flex items-center gap-2 min-w-0">
+                      <div className={`w-8 h-8 rounded-lg ${badgeBg} flex items-center justify-center font-bold text-[10px] shrink-0 shadow-2xs`}>
+                        {badgeLabel}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-900 truncate" title={doc.title}>
+                          {doc.title}
+                        </p>
+                        <p className="text-[10px] text-slate-500 truncate">
+                          {doc.filename}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center shrink-0 self-end sm:self-auto">
+                      <a
+                        id={`btn-download-resource-${module.id}-${idx}`}
+                        href={doc.downloadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-gradient-to-r ${btnGradient} shadow-2xs transition-all cursor-pointer`}
+                        title={`Download ${doc.title}`}
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>{btnLabel}</span>
+                      </a>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
