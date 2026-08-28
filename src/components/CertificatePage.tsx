@@ -11,6 +11,8 @@ import {
   Image as ImageIcon,
   Loader2,
   LogOut,
+  MessageSquareHeart,
+  ExternalLink,
   Paintbrush,
   Printer,
   RotateCcw,
@@ -230,6 +232,20 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
                 <span>Edit Details</span>
               </button>
 
+              {/* FEEDBACK FORM BUTTON */}
+              <a
+                id="btn-certificate-feedback-form"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSeT0bBfGqkgmNOb8tUylUunhqOO-ebdmOt2BnVppsuaxRsswg/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-indigo-950 bg-gradient-to-r from-indigo-100 to-sky-100 hover:from-indigo-200 hover:to-sky-200 border border-indigo-200/90 shadow-2xs hover:shadow-xs transition-all cursor-pointer"
+                title="Fill in workshop feedback form"
+              >
+                <MessageSquareHeart className="w-3.5 h-3.5 text-indigo-600" />
+                <span>Feedback Form</span>
+                <ExternalLink className="w-3 h-3 text-indigo-500" />
+              </a>
+
               {/* DOWNLOAD CERTIFICATE PDF BUTTON */}
               <button
                 id="btn-download-certificate-pdf"
@@ -440,6 +456,38 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
               This is a digitally generated and cryptographically verifiable certificate issued upon successful completion of all {modules.length} modules.
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* BOTTOM FEEDBACK BANNER (Hidden on print) */}
+      <div className="no-print relative rounded-3xl border border-indigo-200/90 bg-gradient-to-r from-indigo-50/80 via-sky-50/70 to-teal-50/60 backdrop-blur-xl shadow-md p-5 sm:p-6 overflow-hidden">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-indigo-100 text-indigo-800 border border-indigo-200">
+                <MessageSquareHeart className="w-3.5 h-3.5 text-indigo-600" />
+                <span>Workshop Feedback</span>
+              </span>
+            </div>
+            <h3 className="text-base sm:text-lg font-bold text-slate-900">
+              Share Your Workshop Experience
+            </h3>
+            <p className="text-xs text-slate-600 max-w-xl">
+              Please take a moment to provide your valuable feedback on the AI workshop modules and sessions.
+            </p>
+          </div>
+
+          <a
+            id="btn-bottom-feedback-form"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeT0bBfGqkgmNOb8tUylUunhqOO-ebdmOt2BnVppsuaxRsswg/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-indigo-600 via-sky-600 to-teal-600 hover:from-indigo-700 hover:to-teal-700 transition-all shadow-md shadow-indigo-600/20 hover:shadow-lg cursor-pointer shrink-0"
+          >
+            <MessageSquareHeart className="w-4 h-4" />
+            <span>Open Feedback Form</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </div>

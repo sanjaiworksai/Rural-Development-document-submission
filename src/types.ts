@@ -11,6 +11,16 @@ export interface UploadedDoc {
   pageCount?: number;
 }
 
+export interface ModuleResourceDoc {
+  id: string;
+  title: string;
+  filename: string;
+  type: 'pdf';
+  viewUrl: string;
+  downloadUrl: string;
+  sizeDescription?: string;
+}
+
 export interface ModuleData {
   id: number;
   code: string;
@@ -22,6 +32,7 @@ export interface ModuleData {
   recommendedType: DocType;
   uploadedFile?: UploadedDoc;
   isVerified?: boolean;
+  resourceDocs?: ModuleResourceDoc[];
 }
 
 export interface UserAuth {

@@ -1,7 +1,9 @@
 import React, { useRef, useState } from 'react';
 import {
   CheckCircle2,
+  Download,
   FileCode2,
+  FileDown,
   FileSpreadsheet,
   FileText,
   Presentation,
@@ -204,6 +206,58 @@ export const ModuleCard: React.FC<ModuleCardProps> = ({
           <span className="text-[11px] font-medium text-slate-400">Accepted:</span>
           {module.acceptedTypes.map((type) => getBadgeForType(type))}
         </div>
+
+        {/* Downloadable Reference PDF Documents (if provided for module) */}
+        {module.resourceDocs && module.resourceDocs.length > 0 && (
+          <div className="mt-3.5 pt-3 border-t border-slate-200/80 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-900">
+                <FileDown className="w-3.5 h-3.5 text-red-600" />
+                <span>Reference Documents (PDF)</span>
+              </span>
+              <span className="text-[10px] font-semibold uppercase px-2 py-0.5 rounded-md bg-red-50 text-red-700 border border-red-200">
+                {module.resourceDocs.length} PDFs Available
+              </span>
+            </div>
+
+            <div className="space-y-1.5">
+              {module.resourceDocs.map((doc, idx) => (
+                <div
+                  key={doc.id}
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 rounded-xl bg-white/95 border border-slate-200/90 shadow-2xs hover:border-red-200 hover:bg-red-50/20 transition-all"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <div className="w-7 h-7 rounded-lg bg-red-100 text-red-700 flex items-center justify-center font-bold text-[11px] shrink-0 shadow-2xs">
+                      PDF
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold text-slate-900 truncate" title={doc.title}>
+                        {doc.title}
+                      </p>
+                      <p className="text-[10px] text-slate-500 truncate">
+                        {doc.filename}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center shrink-0 self-end sm:self-auto">
+                    <a
+                      id={`btn-download-pdf-${module.id}-${idx}`}
+                      href={doc.downloadUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-white bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 shadow-2xs transition-all cursor-pointer"
+                      title="Download PDF directly"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Download PDF</span>
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Hidden File Input */}

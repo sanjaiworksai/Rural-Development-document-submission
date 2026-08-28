@@ -10,6 +10,26 @@ export const INITIAL_MODULES: ModuleData[] = [
     category: 'Inspection',
     acceptedTypes: ['word', 'pdf'],
     recommendedType: 'word',
+    resourceDocs: [
+      {
+        id: 'mod1-doc-1',
+        title: 'Inspection Report - Reference Document 1',
+        filename: 'Inspection_Report_Reference_1.pdf',
+        type: 'pdf',
+        viewUrl: 'https://drive.google.com/file/d/1gJnswRiUSMiBFhLujOIffGbfcAyaF9Xn/view?usp=drive_link',
+        downloadUrl: 'https://drive.google.com/uc?export=download&id=1gJnswRiUSMiBFhLujOIffGbfcAyaF9Xn',
+        sizeDescription: 'PDF Document',
+      },
+      {
+        id: 'mod1-doc-2',
+        title: 'Inspection Report - Reference Document 2',
+        filename: 'Inspection_Report_Reference_2.pdf',
+        type: 'pdf',
+        viewUrl: 'https://drive.google.com/file/d/1XUmS5TKnxK4NoyROp0kyk61eBhb0WeB_/view?usp=drive_link',
+        downloadUrl: 'https://drive.google.com/uc?export=download&id=1XUmS5TKnxK4NoyROp0kyk61eBhb0WeB_',
+        sizeDescription: 'PDF Document',
+      },
+    ],
   },
   {
     id: 2,
