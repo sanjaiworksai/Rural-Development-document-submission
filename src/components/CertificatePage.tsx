@@ -165,9 +165,6 @@ export const CertificatePage: React.FC<CertificatePageProps> = ({
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-bold px-2 py-0.5 rounded-lg tracking-wider text-white bg-gradient-to-r from-cyan-600 to-teal-600 shadow-xs">
-                    CERT-01
-                  </span>
                   <h2 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
                     Official AI Workshop Certificate
                   </h2>

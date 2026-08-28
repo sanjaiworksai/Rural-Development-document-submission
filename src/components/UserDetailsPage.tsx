@@ -117,10 +117,7 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
             {/* Top Row Badges matching Module Card */}
             <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-200/70">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold px-2.5 py-1 rounded-lg tracking-wider text-white bg-gradient-to-r from-teal-600 to-emerald-600 shadow-xs">
-                  PROF-01
-                </span>
-                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md border bg-teal-50/90 text-teal-800 border-teal-200/70">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-md border bg-teal-50/90 text-teal-800 border-teal-200/70">
                   Recipient Identity
                 </span>
               </div>
@@ -200,7 +197,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
 
                 {/* Quick suggestions for Designation */}
                 <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                  <span className="text-[11px] text-slate-400 font-medium">Quick Select:</span>
                   {DESIGNATION_SUGGESTIONS.slice(0, 3).map((item) => (
                     <button
                       key={item}
@@ -239,7 +235,6 @@ export const UserDetailsPage: React.FC<UserDetailsPageProps> = ({
 
                 {/* Quick suggestions for Department */}
                 <div className="mt-2 flex flex-wrap items-center gap-1.5">
-                  <span className="text-[11px] text-slate-400 font-medium">Quick Select:</span>
                   {DEPARTMENT_SUGGESTIONS.slice(0, 2).map((item) => (
                     <button
                       key={item}

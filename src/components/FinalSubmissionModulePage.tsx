@@ -150,11 +150,8 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
         <div className="p-6 sm:p-8 pb-4 border-b border-slate-200/70">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold px-2.5 py-1 rounded-lg tracking-wider text-white bg-gradient-to-r from-teal-600 to-emerald-600 shadow-xs">
-                MOD-FINAL
-              </span>
-              <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md border bg-teal-50/90 text-teal-800 border-teal-200/70">
-                Capstone Dossier
+              <span className="text-xs font-semibold px-2.5 py-1 rounded-md border bg-teal-50/90 text-teal-800 border-teal-200/70">
+                Final Module
               </span>
             </div>
 
@@ -172,13 +169,10 @@ export const FinalSubmissionModulePage: React.FC<FinalSubmissionModulePageProps>
 
           {/* Title and descriptions */}
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
-            Final Capstone Submission Module
+            Final Submission
           </h2>
-          <p className="text-xs sm:text-sm font-semibold text-teal-700 mt-0.5">
-            Comprehensive Project Dossier &amp; Certificate Eligibility
-          </p>
           <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed max-w-3xl">
-            Upload your completed capstone document (Word, PDF, or PowerPoint) below. Once submitted, you can proceed directly to enter your profile details for certificate issuance.
+            Upload your completed document (Word, PDF, or PowerPoint) below. Once submitted, you can proceed directly to enter your profile details for certificate issuance.
           </p>
 
           {/* Accepted Formats Tag List */}

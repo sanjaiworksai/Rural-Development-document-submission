@@ -63,13 +63,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           <div className="h-2 w-full bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400" />
 
           <div className="p-6 sm:p-8">
-            {/* Card Top Row Header with Module-style Badges */}
+            {/* Card Top Row Header */}
             <div className="flex items-center justify-between gap-2 pb-4 mb-5 border-b border-slate-200/70">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold px-2.5 py-1 rounded-lg tracking-wider text-white bg-gradient-to-r from-cyan-600 to-teal-600 shadow-xs">
-                  AUTH-01
-                </span>
-                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md border bg-cyan-50/90 text-cyan-800 border-cyan-200/70">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-md border bg-cyan-50/90 text-cyan-800 border-cyan-200/70">
                   Portal Login
                 </span>
               </div>
@@ -87,9 +84,6 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
               </h3>
               <p className="text-xs font-semibold text-teal-700 mt-0.5">
                 Participant Verification &amp; Document Submission
-              </p>
-              <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                Enter your official details to access the AI workshop modules and generate accredited completion certificates.
               </p>
             </div>
 
