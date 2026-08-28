@@ -67,101 +67,106 @@ export const ModulesSubmissionPage: React.FC<ModulesSubmissionPageProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6">
-      {/* Top Banner & Instructions */}
-      <div className="bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 p-5 sm:p-6 shadow-sm">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-50 text-teal-900 border border-teal-200/80">
-                <Bot className="w-3.5 h-3.5 text-teal-600" />
-                <span>AI Workshop Submissions</span>
-              </span>
-              <span className="text-xs text-slate-500 font-medium">Participant: {userAuth.name}</span>
+      {/* Top Banner & Instructions with Signature Module Card Design */}
+      <div className="relative rounded-3xl border border-teal-200/90 hover:border-teal-300 bg-gradient-to-b from-white via-teal-50/30 to-cyan-50/20 backdrop-blur-xl shadow-xl shadow-teal-900/10 overflow-hidden transition-all">
+        {/* Top Gradient Accent Bar matching module card */}
+        <div className="h-2 w-full bg-gradient-to-r from-cyan-400 via-teal-400 to-emerald-400" />
+
+        <div className="p-5 sm:p-7">
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-50 text-teal-900 border border-teal-200/80 shadow-2xs">
+                  <Bot className="w-3.5 h-3.5 text-teal-600" />
+                  <span>AI Workshop Submissions</span>
+                </span>
+                <span className="text-xs text-slate-500 font-medium">Participant: {userAuth.name}</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                Document Submission Grid
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
+                Upload your Word (.docx), PDF (.pdf), or PowerPoint (.pptx) files directly into each module. After submitting, move to the final submission module.
+              </p>
             </div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
-              Document Submission Grid
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
-              Upload your Word (.docx), PDF (.pdf), or PowerPoint (.pptx) files directly into each module. After submitting, move to the final submission module.
-            </p>
-          </div>
 
-          {/* Quick Actions & Utilities */}
-          <div className="flex flex-col sm:items-end gap-2 shrink-0">
-            <div className="flex flex-wrap items-center gap-2.5">
-              <button
-                id="btn-autofill-all-modules"
-                type="button"
-                onClick={onAutoFillAll}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-teal-950 bg-teal-50 hover:bg-teal-100/80 border border-teal-200/80 transition-colors shadow-2xs cursor-pointer"
-                title={`Quickly fill all ${totalCount} modules with verified AI workshop sample documents`}
-              >
-                <Sparkles className="w-3.5 h-3.5 text-teal-600" />
-                <span>Auto-Upload All {totalCount} AI Demo Files</span>
-              </button>
-
-              {completedCount > 0 && (
+            {/* Quick Actions & Utilities */}
+            <div className="flex flex-col sm:items-end gap-2 shrink-0">
+              <div className="flex flex-wrap items-center gap-2.5">
                 <button
-                  id="btn-clear-all-modules"
+                  id="btn-autofill-all-modules"
                   type="button"
-                  onClick={onClearAll}
-                  className="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 border border-slate-200 hover:border-red-200 transition-colors cursor-pointer"
-                  title="Reset all uploads"
+                  onClick={onAutoFillAll}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-teal-950 bg-white/90 hover:bg-white border border-teal-200/90 hover:border-teal-300 transition-all shadow-2xs cursor-pointer"
+                  title={`Quickly fill all ${totalCount} modules with verified AI workshop sample documents`}
                 >
-                  <Trash2 className="w-3.5 h-3.5" />
-                  <span>Reset All</span>
+                  <Sparkles className="w-3.5 h-3.5 text-teal-600" />
+                  <span>Auto-Upload All {totalCount} AI Demo Files</span>
                 </button>
-              )}
+
+                {completedCount > 0 && (
+                  <button
+                    id="btn-clear-all-modules"
+                    type="button"
+                    onClick={onClearAll}
+                    className="inline-flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-red-600 bg-white/80 hover:bg-red-50 border border-slate-200 hover:border-red-200 transition-colors cursor-pointer shadow-2xs"
+                    title="Reset all uploads"
+                  >
+                    <Trash2 className="w-3.5 h-3.5" />
+                    <span>Reset All</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Prompt Link Button below Auto-Upload */}
+              <a
+                id="btn-prompt-drive-link"
+                href="https://drive.google.com/drive/folders/12pidfynGWKGIBY9CV8mKFwdma32MCH9p"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-indigo-950 bg-indigo-50/90 hover:bg-indigo-100 border border-indigo-200/80 transition-all shadow-2xs cursor-pointer hover:shadow-xs"
+                title="Open Google Drive Prompt Folder"
+              >
+                <ExternalLink className="w-3.5 h-3.5 text-indigo-600" />
+                <span>Prompt</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Global Progress Bar */}
+          <div className="mt-5 pt-4 border-t border-teal-100/70 space-y-2">
+            <div className="flex items-center justify-between text-xs">
+              <span className="font-semibold text-slate-700 flex items-center gap-1.5">
+                <UploadCloud className="w-4 h-4 text-teal-600" />
+                <span>Submission Progress:</span>
+                <strong className="text-slate-900">{completedCount} of {totalCount} Modules Complete</strong>
+              </span>
+              <span className="font-bold text-teal-900 bg-teal-50 px-2 py-0.5 rounded-md border border-teal-200/80">
+                {progressPercent}%
+              </span>
             </div>
 
-            {/* Prompt Link Button below Auto-Upload */}
-            <a
-              id="btn-prompt-drive-link"
-              href="https://drive.google.com/drive/folders/12pidfynGWKGIBY9CV8mKFwdma32MCH9p"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold text-indigo-950 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200/80 transition-all shadow-2xs cursor-pointer hover:shadow-xs"
-              title="Open Google Drive Prompt Folder"
-            >
-              <ExternalLink className="w-3.5 h-3.5 text-indigo-600" />
-              <span>Prompt</span>
-            </a>
-          </div>
-        </div>
-
-        {/* Global Progress Bar */}
-        <div className="mt-5 pt-4 border-t border-slate-100 space-y-2">
-          <div className="flex items-center justify-between text-xs">
-            <span className="font-semibold text-slate-700 flex items-center gap-1.5">
-              <UploadCloud className="w-4 h-4 text-teal-600" />
-              <span>Submission Progress:</span>
-              <strong className="text-slate-900">{completedCount} of {totalCount} Modules Complete</strong>
-            </span>
-            <span className="font-bold text-teal-900 bg-teal-50 px-2 py-0.5 rounded-md border border-teal-200/80">
-              {progressPercent}%
-            </span>
-          </div>
-
-          <div className="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-teal-500 via-emerald-500 to-cyan-500 rounded-full transition-all duration-300 ease-out"
-              style={{ width: `${progressPercent}%` }}
-            />
+            <div className="w-full h-2.5 bg-slate-200/60 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-cyan-500 via-teal-500 to-emerald-500 rounded-full transition-all duration-300 ease-out"
+                style={{ width: `${progressPercent}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
 
       {/* Filter Tabs & Primary Toolbar CTA */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-        <div className="flex items-center gap-1.5 bg-slate-200/70 p-1 rounded-xl w-fit">
+        <div className="flex items-center gap-1.5 bg-white/85 backdrop-blur-md border border-teal-200/80 p-1 rounded-2xl w-fit shadow-2xs">
           <button
             id="tab-filter-all"
             type="button"
             onClick={() => setFilter('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
               filter === 'all'
-                ? 'bg-white text-slate-900 shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-teal-50/60'
             }`}
           >
             All Modules ({totalCount})
@@ -170,10 +175,10 @@ export const ModulesSubmissionPage: React.FC<ModulesSubmissionPageProps> = ({
             id="tab-filter-pending"
             type="button"
             onClick={() => setFilter('pending')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
               filter === 'pending'
-                ? 'bg-white text-slate-900 shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-teal-50/60'
             }`}
           >
             Pending ({totalCount - completedCount})
@@ -182,10 +187,10 @@ export const ModulesSubmissionPage: React.FC<ModulesSubmissionPageProps> = ({
             id="tab-filter-completed"
             type="button"
             onClick={() => setFilter('completed')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
               filter === 'completed'
-                ? 'bg-white text-slate-900 shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white shadow-xs'
+                : 'text-slate-600 hover:text-slate-900 hover:bg-teal-50/60'
             }`}
           >
             Submitted ({completedCount})

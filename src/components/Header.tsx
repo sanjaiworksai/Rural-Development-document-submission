@@ -30,7 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
   const currentStepIndex = stepsConfig.findIndex((s) => s.key === currentStep);
 
   return (
-    <header className="no-print sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs">
+    <header className="no-print sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-teal-200/70 shadow-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Brand Logo & Title */}
@@ -43,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <h1 className="text-base sm:text-lg font-bold text-slate-900 leading-tight">
                   AI Workshop Submission Portal
                 </h1>
-                <span className="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200/80">
+                <span className="text-[11px] font-semibold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-800 border border-teal-200/80 shadow-2xs">
                   AI Certification
                 </span>
               </div>
@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* User Status and Navigation Indicator */}
           {userAuth && (
             <div className="flex items-center gap-3 sm:gap-4">
-              <div className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-700">
+              <div className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-white/80 border border-teal-200/80 text-xs text-slate-700 shadow-2xs">
                 <span className="font-semibold text-slate-900">{userAuth.name}</span>
                 <span className="text-slate-300">•</span>
                 <span className="text-slate-500 truncate max-w-[150px]">{userAuth.email}</span>
@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({
               <button
                 id="btn-header-logout"
                 onClick={onLogout}
-                className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 px-3 py-2 rounded-lg transition-colors border border-transparent hover:border-red-100 cursor-pointer"
+                className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-red-600 hover:bg-red-50 px-3 py-2 rounded-xl transition-colors border border-transparent hover:border-red-100 cursor-pointer"
                 title="Exit Session or Switch Participant"
               >
                 <LogOut className="w-3.5 h-3.5" />
@@ -82,7 +82,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Multi-Step Tracker Bar */}
         {userAuth && (
-          <div className="py-2.5 border-t border-slate-100 overflow-x-auto no-scrollbar">
+          <div className="py-2.5 border-t border-teal-100/60 overflow-x-auto no-scrollbar">
             <div className="flex items-center justify-between min-w-[640px] gap-2">
               {stepsConfig.map((step, idx) => {
                 const isCompleted = idx < currentStepIndex;
@@ -94,7 +94,7 @@ export const Header: React.FC<HeaderProps> = ({
                     key={step.key}
                     className={`flex items-center gap-2 py-1 px-3 rounded-lg transition-all ${
                       isCurrent
-                        ? 'bg-teal-50 text-teal-950 font-semibold border border-teal-200/90 shadow-2xs'
+                        ? 'bg-gradient-to-r from-teal-50 to-cyan-50 text-teal-950 font-semibold border border-teal-200/90 shadow-2xs'
                         : isCompleted
                         ? 'text-emerald-700 font-medium'
                         : 'text-slate-400 font-normal'
@@ -103,7 +103,7 @@ export const Header: React.FC<HeaderProps> = ({
                     <div
                       className={`w-6 h-6 rounded-full flex items-center justify-center text-xs shrink-0 ${
                         isCurrent
-                          ? 'bg-teal-600 text-white font-bold shadow-xs'
+                          ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-bold shadow-xs'
                           : isCompleted
                           ? 'bg-emerald-600 text-white'
                           : 'bg-slate-200 text-slate-600'
@@ -113,7 +113,7 @@ export const Header: React.FC<HeaderProps> = ({
                     </div>
                     <span className="text-xs whitespace-nowrap">{step.label}</span>
                     {idx < stepsConfig.length - 1 && (
-                      <div className="w-4 h-0.5 bg-slate-200 ml-1 hidden sm:block" />
+                      <div className="w-4 h-0.5 bg-teal-200/70 ml-1 hidden sm:block" />
                     )}
                   </div>
                 );
